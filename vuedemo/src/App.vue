@@ -18,18 +18,16 @@ export default {
   data(){
     return{
       titulo: 'VueJs Demo',
-      fotos : [ 
-        {
-          url :  "https://www.clubeparacachorros.com.br/wp-content/uploads/2018/07/cachorros-mais-fofos-do-mundo-lulu-da-pomerania-filhote.jpg",
-          titulo : "cachorro fofo"
-        },
-        {
-          url :  "https://www.clubeparacachorros.com.br/wp-content/uploads/2018/07/cachorros-mais-fofos-do-mundo-lulu-da-pomerania-filhote.jpg",
-          titulo : "cachorro fofo2"
-        }
-      ] 
+      fotos : [ ] 
     }
+  },
+  created(){
+    this.$http.get("http://localhost:3000/v1/fotos")
+    .then(res => res.json())
+    .then(fotos => this.fotos = fotos, err => console.log(err));
   }
+
+  
 }
 </script>
 
